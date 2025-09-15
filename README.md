@@ -1,5 +1,6 @@
 # DJANGO Study Project 1
-Study project with goal of leaning about new lrelease of DJANGO 5.2.
+Study project with goal of leaning about new release of DJANGO 5.2.
+This project is a simple web application for sharing and discovering recipes.
 
 ## Installation
 1. Clone the repository:

@@ -5,7 +5,17 @@ from django.shortcuts import render
 def main_view(request):
     context = {}
     context['title'] = 'Página Principal'
-    return render(request, 'main/main.html', context=context)
+    return render(request, 'main/home.html', context=context)
+
+def sobre_view(request):
+    context = {}
+    context['title'] = 'Página SOBRE'
+    return render(request, 'main/sobre.html', context=context)
+
+def contato_view(request):
+    context = {}
+    context['title'] = 'Página CONTATO'
+    return render(request, 'main/contato.html', context=context)
 
 def error_404_view(request, exception):
     return render(request, 'errors/404.html', status=404)
