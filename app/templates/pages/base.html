@@ -1,9 +1,15 @@
 <!doctype html>
 <html>
-  {% include "partials/head.html" %}
+  <head>
+    {% include "partials/head.html" %}
+    <title>{% block title %} {% endblock %} | Receitas</title>
+  </head>
   <body>
-    <main>
+    {% include "partials/header.html"%}
+    {% include "partials/search_container.html"%}
+    <main class="main-content-container">
       {% block content %}{% endblock %}
     </main>
+  {% include "partials/footer.html" %}
   </body>
 </html>

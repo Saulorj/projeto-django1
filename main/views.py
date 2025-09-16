@@ -1,12 +1,20 @@
 from django.shortcuts import render
 
+from app.helpers.faker_data import make_recipe, make_recipes
+
 # Create your views here.
+_recipes = make_recipes(7)
 
 def main_view(request):
-    context = {}
-    context['title'] = 'Página Principal'
+    context = {"recipes": _recipes}
     return render(request, 'main/home.html', context=context)
 
+def recipe(request, id: int):
+    context={"recipe": _recipes[id], "is_detail_page": True}
+    return render(request, 'main/recipe-view.html', context=context)
+
+
+# Views fixas
 def sobre_view(request):
     context = {}
     context['title'] = 'Página SOBRE'
@@ -27,4 +35,5 @@ def error_403_view(request, exception):
     return render(request, 'errors/403.html', status=403)
 
 def error_400_view(request, exception):
+    return render(request, 'errors/400.html', status=400)
     return render(request, 'errors/400.html', status=400)

@@ -36,3 +36,11 @@ This project is a simple web application for sharing and discovering recipes.
 Enjoy!!! 😉
 
 ## Features
+
+
+## Routines
+1. Create statis production files
+    ```bash
+    python manage.py collectstatic
+    ```
+    comment: dont forget to set STATIC_ROOT in settings.py
