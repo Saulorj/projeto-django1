@@ -5,6 +5,12 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
     name = models.CharField(max_length=65)
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Categoria'
+        verbose_name_plural = 'Categorias'
+
 
 class Recipe(models.Model):
     title = models.CharField(max_length=65)
@@ -31,3 +37,6 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
+    class Meta:
+        verbose_name = 'Receita'
+        verbose_name_plural = 'Receitas'

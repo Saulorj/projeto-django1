@@ -1,16 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
-from app.helpers.faker_data import make_recipe, make_recipes
+from .models import Recipe
 
 # Create your views here.
-_recipes = make_recipes(7)
+
 
 def main_view(request):
+    _recipes = Recipe.objects.filter(is_published=True).order_by('-id')
     context = {"recipes": _recipes}
     return render(request, 'main/home.html', context=context)
 
+def category(request, id: int):
+    _recipes = Recipe.objects.filter(category__id=id, is_published=True).order_by('-id')
+    context = {"recipes": _recipes}
+    return render(request, 'main/home.html', context=context)
+
+
 def recipe(request, id: int):
-    context={"recipe": _recipes[id], "is_detail_page": True}
+    # _recipe =  Recipe.objects.get(id=id)
+    _recipe = get_object_or_404(Recipe, pk=id, is_published=True)
+    context={"recipe": _recipe, "is_detail_page": True}
     return render(request, 'main/recipe-view.html', context=context)
 
 
@@ -35,5 +44,4 @@ def error_403_view(request, exception):
     return render(request, 'errors/403.html', status=403)
 
 def error_400_view(request, exception):
-    return render(request, 'errors/400.html', status=400)
     return render(request, 'errors/400.html', status=400)

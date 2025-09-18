@@ -9,9 +9,12 @@ handler500 = views.error_500_view
 handler403 = views.error_403_view
 handler400 = views.error_400_view
 
+app_name = 'main'
+
 urlpatterns = [
-    path('', views.main_view, name='main'),
+    path('', views.main_view, name='home'),
     path('recipes/<int:id>/', views.recipe, name='recipe'),
+    path('category/<int:id>/', views.category, name='category'),
 
     # fixas
     path('sobre/', views.sobre_view, name='sobre'),
