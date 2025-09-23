@@ -9,6 +9,8 @@
     {% include "partials/search_container.html"%}
     <main class="main-content-container">
       {% block content %}{% endblock %}
+      {% include "partials/pagination.html"%}
+
     </main>
   {% include "partials/footer.html" %}
   </body>

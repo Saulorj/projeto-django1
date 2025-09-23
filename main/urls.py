@@ -13,8 +13,10 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.main_view, name='home'),
+    path('search/', views.search, name='search'),
     path('recipes/<int:id>/', views.recipe, name='recipe'),
     path('category/<int:id>/', views.category, name='category'),
+
 
     # fixas
     path('sobre/', views.sobre_view, name='sobre'),
