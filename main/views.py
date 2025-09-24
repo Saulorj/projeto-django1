@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
@@ -14,6 +15,13 @@ def main_view(request):
     _recipes = Recipe.objects.filter(is_published=True).order_by('-id')
     page, pages = make_pagination(request, _recipes, per_page=3, qty_page=3)
     context = {"recipes": page, "pages": pages, 'search_term': ''}
+
+    # messages.debug(request, "🐞 Esta é um debug")
+    # messages.error(request, "❌ Este é um erro!!!")
+    # messages.info(request, "👉 Esta é uma informação")
+    # messages.success(request, "✅ Esta é um sucesso")
+    # messages.warning(request, "⚠️ Esta é um aviso")
+
     return render(request, 'main/home.html', context=context)
 
 def category(request, id: int):
@@ -29,6 +37,9 @@ def recipe(request, id: int):
     return render(request, 'main/recipe-view.html', context=context)
 
 def search(request):
+
+
+
     search_term = request.GET.get('q', '').strip()
     if not search_term:
         raise Http404()

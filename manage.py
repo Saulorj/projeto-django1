@@ -3,6 +3,10 @@
 import os
 import sys
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 def main():
     """Run administrative tasks."""
@@ -18,5 +22,7 @@ def main():
     execute_from_command_line(sys.argv)
 
 
+if __name__ == '__main__':
+    main()
 if __name__ == '__main__':
     main()
