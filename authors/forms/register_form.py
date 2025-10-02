@@ -1,14 +1,9 @@
-import re
 
 from django import forms
 from django.contrib.auth.models import User
 
+from app.helpers.form_helper import strong_password
 
-def strong_password(password):
-    regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$')
-    if not regex.match(password):
-        raise forms.ValidationError('Senha deve conter minimo de 8 caracteres com letras e numeros.',
-                                    code = 'invalid')
 
 class RegisterForm(forms.ModelForm):
     password2 = forms.CharField( required=True,
@@ -24,6 +19,13 @@ class RegisterForm(forms.ModelForm):
                 code = 'invalid'
             )
         return data
+
+    def clean_email(self):
+        email_frm = self.cleaned_data.get('email', '')
+        exists = User.objects.filter(email=email_frm).exists()
+        if exists:
+            raise forms.ValidationError('Email já está em uso!', code='invalid')
+        return email_frm
 
 
     def clean(self):
